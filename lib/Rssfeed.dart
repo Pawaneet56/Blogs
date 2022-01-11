@@ -152,7 +152,7 @@ class _RSSFeedState extends State<RSSFeed> {
     _refreshKey = GlobalKey<RefreshIndicatorState>();
     updateTitle("blog app");
     try {
-      load().ensureInitialized();
+      load();
     } catch (e) { }
     }
     @override
