@@ -135,7 +135,7 @@ class _RSSFeedState extends State<RSSFeed> {
   }
 
   isFeedEmpty() {
-    return (null == _feed || null == _feed.items);
+    return (_feed==null || _feed.items == null);
   }
 
   body() {
@@ -151,9 +151,9 @@ class _RSSFeedState extends State<RSSFeed> {
     super.initState();
     _refreshKey = GlobalKey<RefreshIndicatorState>();
     updateTitle("blog app");
-    try {
-      load();
-    } catch (e) { }
+      load().whenComplete((){
+        setState((){});
+      });
     }
     @override
     Widget build(BuildContext context) {
