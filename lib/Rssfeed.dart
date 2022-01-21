@@ -12,9 +12,9 @@ class RSSFeed extends StatefulWidget {
 }
 
 class _RSSFeedState extends State<RSSFeed> {
-  static const String feed_url = "https://medium.com/feed/@cepstrumeeeiitg";
-  static const String loadingfieldmsg = "LOADING FEED wait";
-  static const String errormsg = "ERROR LOADING FEED wait";
+    String feed_url = "https://medium.com/feed/@cepstrumeeeiitg";
+   String loadingfieldmsg = "LOADING FEED wait";
+  String errormsg = "ERROR LOADING FEED wait";
   late GlobalKey<RefreshIndicatorState> _refreshKey;
   late RssFeed _feed;
   late String _title;
@@ -25,27 +25,27 @@ class _RSSFeedState extends State<RSSFeed> {
     });
   }
 
-  updateFeed(feed) {
+  updateFeed(feed)  {
     setState(() {
-      _feed = feed;
+       _feed = feed;
 
     });
   }
 
   Future<void> openFeed(String url) async {
-    try {
-      //await launch(url);
-      await FlutterWebBrowser.openWebPage(url: url);
-       //WebBrowser( initialUrl: url,);
-    }
-    catch (e) {
-      updateTitle("Error opening feed");
-    }
-  }
+      try {
+        //await launch(url);
+        await FlutterWebBrowser.openWebPage(url: url);
+         //WebBrowser( initialUrl: url,);
+      }
+      catch (e) {
+        updateTitle("Error opening feed");
+      }
 
+  }
   load() async {
     updateTitle(loadingfieldmsg);
-    loadFeed().then((result) {
+     loadFeed().then((result) {
       if (null == result || result
           .toString()
           .isEmpty) {
@@ -59,14 +59,14 @@ class _RSSFeedState extends State<RSSFeed> {
 
   Future<RssFeed?> loadFeed() async {
     try {
-      final client = http.Client();
+      final client =  http.Client();
       final response = await client.get(Uri.parse(feed_url));
 
-      return RssFeed.parse(response.body);
+      return  RssFeed.parse(response.body);
     } catch (e) {
 
     }
-    return null;
+
   }
 
   title(title) {
@@ -142,7 +142,11 @@ class _RSSFeedState extends State<RSSFeed> {
     return isFeedEmpty() ? Center(
       child: CircularProgressIndicator(),
     ) : RefreshIndicator(
-        key: _refreshKey, child: list(), onRefresh: () => load());
+        key: _refreshKey, child: list(), onRefresh: () => load().whenComplete((){
+          setState(() {
+
+          });
+    }));
   }
 
   @override
@@ -151,9 +155,7 @@ class _RSSFeedState extends State<RSSFeed> {
     super.initState();
     _refreshKey = GlobalKey<RefreshIndicatorState>();
     updateTitle("blog app");
-      load().whenComplete((){
-        setState((){});
-      });
+      load();
     }
     @override
     Widget build(BuildContext context) {
