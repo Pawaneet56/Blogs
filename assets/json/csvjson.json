@@ -43,7 +43,7 @@
     "Default Gateway": "10.4.0.254"
   },
   {
-    "Hostel": "Married Scholars Hostel",
+    "Hostel": "Married Scholars",
     "IP Adress Range": "10.17.X.Y",
     "Subnet mask": "255.255.252.0",
     "Default Gateway": "10.17.0.254"
