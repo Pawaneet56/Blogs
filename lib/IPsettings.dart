@@ -1,6 +1,6 @@
 //import 'dart:html';
 
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_typing_uninitialized_variables, avoid_print
 
 import 'package:blogss/hosteldetails.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +39,7 @@ String calculatedetails(hostelDetails args,String initials) {
       W = 4;
       break;
     default:
-      W = (block.codeUnitAt(0) - 97).toInt();
+      W = (block.toLowerCase().codeUnitAt(0) - 97).toInt();
       break;
   }
   var selectedHostel = args.hostelName;
@@ -136,22 +136,20 @@ class _HomePageState extends State<HomePage> {
         ),
 
       ),
-      body: Container(
-        child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(hostelname),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(subnet),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(ipAdress),
-          )
-        ],),
-      ),
+      body: Column(children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(hostelname),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(subnet),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(ipAdress),
+        )
+      ],),
         );
 
 
